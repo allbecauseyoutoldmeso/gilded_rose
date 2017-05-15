@@ -35,6 +35,16 @@ class GildedRose
     end
   end
 
+  def increase_quality_exponentially(item)
+    if item.sell_in <=5
+      item.quality +=3
+    elsif item.sell_in <= 10
+      item.quality +=2
+    else
+      item.quality += 1
+    end
+  end
+
   def update_quality()
     @items.each do |item|
       if is_normal?(item)
@@ -42,13 +52,7 @@ class GildedRose
       elsif is_aged_brie?(item)
         increase_quality(item)
       elsif is_backstage_passes?(item)
-        if item.sell_in <=5
-          item.quality +=3
-        elsif item.sell_in <= 10
-          item.quality +=2
-        else
-          item.quality += 1
-        end
+        increase_quality_exponentially(item)  
       end
 
       if ! is_sulfuras?(item)
