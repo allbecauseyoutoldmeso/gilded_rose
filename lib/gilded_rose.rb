@@ -16,7 +16,7 @@ class GildedRose
   end
 
   def is_backstage_passes?(item)
-    item.name == 'Aged Brie'
+    item.name == 'Backstage passes'
   end
 
   def is_sulfuras?(item)
@@ -25,7 +25,7 @@ class GildedRose
 
   def reduce_quality(item)
     if item.quality > 0
-        item.quality = item.quality - 1
+        item.quality -= 1
     end
   end
 
@@ -39,15 +39,15 @@ class GildedRose
     @items.each do |item|
       if is_normal?(item)
         reduce_quality(item)
-      else
+      elsif is_aged_brie?(item)
         increase_quality(item)
-        if item.name == "Backstage passes"
-          if item.sell_in < 11
-            increase_quality(item)
-          end
-          if item.sell_in < 6
-            increase_quality(item)
-          end
+      elsif is_backstage_passes?(item)
+        if item.sell_in <=5
+          item.quality +=3
+        elsif item.sell_in <= 10
+          item.quality +=2
+        else
+          item.quality += 1
         end
       end
 
