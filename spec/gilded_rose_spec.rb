@@ -11,6 +11,16 @@ describe GildedRose do
       expect(gilded_rose.items[0].name).to eq "Malbec"
     end
 
+    it 'reduces the quality by one' do
+      gilded_rose.update_quality
+      expect(gilded_rose.items[0].quality).to eq 9
+    end
+
+    it 'reduces the sell_in time by one' do
+      gilded_rose.update_quality
+      expect(gilded_rose.items[0].sell_in).to eq 9
+    end
+
   end
 
 end
