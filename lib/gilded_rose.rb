@@ -4,7 +4,6 @@ class GildedRose
 
   def initialize(items)
     @items = items
-
   end
 
   def is_normal?(item)
@@ -23,31 +22,35 @@ class GildedRose
     item.name == 'Sulfuras'
   end
 
-  def update_normal_quality(item)
-    item.sell_in >0 ? reduce_quality(item) : 2.times { reduce_quality(item) }
-  end
-
   def reduce_quality(item)
     if item.quality > 0
       item.quality -= 1
     end
   end
 
-  def update_aged_brie_quality(item)
+  def increase_quality(item)
     if item.quality < 50
       item.quality += 1
     end
+  end
+
+  def update_normal_quality(item)
+    item.sell_in >0 ? reduce_quality(item) : 2.times { reduce_quality(item) }
+  end
+
+  def update_aged_brie_quality(item)
+    increase_quality(item)
   end
 
   def update_backstage_pass_quality(item)
     if item.sell_in <= 0
       item.quality = 0
     elsif item.sell_in <=5
-      item.quality +=3
+      3.times { increase_quality(item) }
     elsif item.sell_in <= 10
-      item.quality +=2
-    else
-      item.quality += 1
+      2.times { increase_quality(item) }
+    elsif
+      increase_quality(item)
     end
   end
 
