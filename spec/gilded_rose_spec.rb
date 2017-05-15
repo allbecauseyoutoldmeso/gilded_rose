@@ -2,7 +2,7 @@ require 'gilded_rose'
 
 describe GildedRose do
 
-  subject(:gilded_rose) { described_class.new([Item.new('Malbec', 5, 10), Item.new('Aged Brie', 5, 10), Item.new('Sulfuras, Hand of Ragnaros', 0, 80), Item.new('Backstage passes to a TAFKAL80ETC concert', 10, 10)])}
+  subject(:gilded_rose) { described_class.new([Item.new('Malbec', 5, 10), Item.new('Aged Brie', 5, 10), Item.new('Sulfuras, Hand of Ragnaros', 0, 80), Item.new('Backstage passes to a TAFKAL80ETC concert', 10, 10), Item.new('Conjured', 5, 10)])}
 
   describe "#update_quality" do
 
@@ -76,6 +76,11 @@ describe GildedRose do
         gilded_rose.update_quality
       end
       expect(gilded_rose.items[3].quality).to eq 0
+    end
+
+    it 'decreases the value of Conjured items by 2 a day' do
+      gilded_rose.update_quality
+      expect(gilded_rose.items[4].quality).to eq 8
     end
 
   end
