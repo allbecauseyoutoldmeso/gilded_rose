@@ -2,7 +2,7 @@ require 'gilded_rose'
 
 describe GildedRose do
 
-  subject(:gilded_rose) { described_class.new([Item.new('Malbec', 5, 10), Item.new('Aged Brie', 5, 10)])}
+  subject(:gilded_rose) { described_class.new([Item.new('Malbec', 5, 10), Item.new('Aged Brie', 5, 10), Item.new('Sulfuras, Hand of Ragnaros', 0, 80), Item.new('Backstage passes to a TAFKAL80ETC concert', 10, 10)])}
 
   describe "#update_quality" do
 
@@ -45,6 +45,16 @@ describe GildedRose do
         gilded_rose.update_quality
       end
         expect(gilded_rose.items[1].quality).to eq 50
+    end
+
+    it 'never decreases the quality of Sulfuras' do
+      gilded_rose.update_quality
+      expect(gilded_rose.items[2].quality).to eq 80
+    end
+
+    it 'increases the value of backstage passes by 2 if sell_in is ten or less' do
+      gilded_rose.update_quality
+      expect(gilded_rose.items[3].quality).to eq 12
     end
 
   end
