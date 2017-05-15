@@ -52,9 +52,30 @@ describe GildedRose do
       expect(gilded_rose.items[2].quality).to eq 80
     end
 
-    it 'increases the value of backstage passes by 2 if sell_in is ten or less' do
+    it 'increases the value of backstage passes by 2 if sell_in is <=10' do
       gilded_rose.update_quality
       expect(gilded_rose.items[3].quality).to eq 12
+    end
+
+    it 'increases the value of backstage passes by 3 if sell_in is <=5' do
+      6.times do
+        gilded_rose.update_quality
+      end
+      expect(gilded_rose.items[3].quality).to eq 23
+    end
+
+    it 'decreases the value of backstage passes by 3 if sell_in is <=5' do
+      6.times do
+        gilded_rose.update_quality
+      end
+      expect(gilded_rose.items[3].quality).to eq 23
+    end
+
+    it 'decreases the value of backstage passes to 0 once sell_in is 0' do
+      11.times do
+        gilded_rose.update_quality
+      end
+      expect(gilded_rose.items[3].quality).to eq 0
     end
 
   end
