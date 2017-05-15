@@ -9,15 +9,18 @@ class GildedRose
 
   def is_normal?(item)
     ! ["Aged Brie", "Backstage passes", "Sulfuras"].include?(item.name)
-    # item.name != "Aged Brie" && item.name != "Backstage passes" && item.name != "Sulfuras"
+  end
+
+  def reduce_quality(item)
+    if item.quality > 0
+        item.quality = item.quality - 1
+    end
   end
 
   def update_quality()
     @items.each do |item|
       if is_normal?(item)
-        if item.quality > 0
-            item.quality = item.quality - 1
-        end
+        reduce_quality(item)
       else
         if item.quality < 50
           item.quality = item.quality + 1
