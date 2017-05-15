@@ -2,7 +2,7 @@ require 'gilded_rose'
 
 describe GildedRose do
 
-  subject(:gilded_rose) { described_class.new([Item.new('Malbec', 5, 10)])}
+  subject(:gilded_rose) { described_class.new([Item.new('Malbec', 5, 10), Item.new('Aged Brie', 5, 10)])}
 
   describe "#update_quality" do
 
@@ -33,6 +33,18 @@ describe GildedRose do
         gilded_rose.update_quality
       end
       expect(gilded_rose.items[0].quality).to eq 0
+    end
+
+    it 'increases the value of Aged Brie' do
+      gilded_rose.update_quality
+      expect(gilded_rose.items[1].quality).to eq 11
+    end
+
+    it 'never increases the value to over fifty' do
+      41.times do
+        gilded_rose.update_quality
+      end
+        expect(gilded_rose.items[1].quality).to eq 50
     end
 
   end
