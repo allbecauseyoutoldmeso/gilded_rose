@@ -27,7 +27,7 @@ class Quality_Manager
   end
 
   def update_aged_brie_quality(item)
-    increase_quality(item)
+    item.sell_in > 0 ? increase_quality(item) : 2.times { increase_quality(item) }
   end
 
   def update_backstage_pass_quality(item)

@@ -1,12 +1,8 @@
 golden_master = File.read('golden_master.txt')
 golden_master_lines = golden_master.split("\n")
 
-# gilded_rose_file = 'gilded_rose.rb'
-
-current_output = `ruby texttest_fixture.rb 1 'gilded_rose.rb'`
+current_output = `ruby texttest_fixture.rb 30 'gilded_rose.rb'`
 current_output_lines = current_output.split("\n")
-
-# require 'pry'; binding.pry
 
 lines_to_compare = [golden_master_lines.count, current_output_lines.count].max
 
