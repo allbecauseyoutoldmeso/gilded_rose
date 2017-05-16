@@ -28,7 +28,7 @@ class Quality_Manager
 
   def update_backstage_pass_quality(item)
     if item.sell_in <= 0
-      item.quality = 0
+      item.quality.times { reduce_quality(item) }
     elsif item.sell_in <=5
       3.times { increase_quality(item) }
     elsif item.sell_in <= 10
@@ -44,15 +44,10 @@ class Quality_Manager
 
   def update_items
     items.each do |item|
-      if is_normal?(item)
-        update_normal_quality(item)
-      elsif is_aged_brie?(item)
-        update_aged_brie_quality(item)
-      elsif is_backstage_pass?(item)
-        update_backstage_pass_quality(item)
-      elsif is_conjured?(item)
-        update_conjured_quality(item)
-      end
+      update_normal_quality(item) if is_normal?(item)
+      update_aged_brie_quality(item) if is_aged_brie?(item)
+      update_backstage_pass_quality(item) if is_backstage_pass?(item)
+      update_conjured_quality(item) if is_conjured?(item)
     end
   end
 
