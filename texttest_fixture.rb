@@ -13,7 +13,7 @@ items = [
   Item.new(name="Backstage passes to a TAFKAL80ETC concert", sell_in=5, quality=49),
 ]
 
-days = 30
+days = 40
 if ARGV.size > 0
   days = ARGV[0].to_i + 1
 end

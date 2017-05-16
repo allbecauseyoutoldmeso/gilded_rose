@@ -1,7 +1,7 @@
 golden_master = File.read('golden_master.txt')
 golden_master_lines = golden_master.split("\n")
 
-current_output = `ruby texttest_fixture.rb 30 'gilded_rose.rb'`
+current_output = `ruby texttest_fixture.rb 40 'gilded_rose.rb'`
 current_output_lines = current_output.split("\n")
 
 lines_to_compare = [golden_master_lines.count, current_output_lines.count].max
