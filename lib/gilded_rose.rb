@@ -65,8 +65,8 @@ class GildedRose
     item.sell_in > 0 ? 2.times { reduce_quality(item) } : 4.times { reduce_quality(item) }
   end
 
-  def update_quality(items)
-    @items.each do |item|
+  def update_quality()
+    items.each do |item|
       if is_normal?(item)
         update_normal_quality(item)
       elsif is_aged_brie?(item)
@@ -79,17 +79,17 @@ class GildedRose
     end
   end
 
-  def update_sell_in(items)
-    @items.each do |item|
+  def update_sell_in()
+    items.each do |item|
       if ! is_sulfuras?(item)
         item.sell_in -= 1
       end
     end
   end
 
-  def update_item()
-    update_quality(@items)
-    update_sell_in(@items)
+  def update_items()
+    update_quality()
+    update_sell_in()
   end
 
 end
