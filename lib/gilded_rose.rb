@@ -7,19 +7,23 @@ class GildedRose
   end
 
   def is_normal?(item)
-    ! ['Aged Brie', 'Backstage passes', 'Sulfuras'].include?(item.name)
+    ! ['Aged Brie', 'Backstage passes', 'Sulfuras', 'Conjured'].include?(item.name)
   end
 
   def is_aged_brie?(item)
     item.name == 'Aged Brie'
   end
 
-  def is_backstage_passes?(item)
+  def is_backstage_pass?(item)
     item.name == 'Backstage passes'
   end
 
   def is_sulfuras?(item)
     item.name == 'Sulfuras'
+  end
+
+  def is_conjured?(item)
+    item.name == 'Conjured'
   end
 
   def reduce_quality(item)
@@ -35,7 +39,7 @@ class GildedRose
   end
 
   def update_normal_quality(item)
-    item.sell_in >0 ? reduce_quality(item) : 2.times { reduce_quality(item) }
+    item.sell_in > 0 ? reduce_quality(item) : 2.times { reduce_quality(item) }
   end
 
   def update_aged_brie_quality(item)
@@ -54,13 +58,19 @@ class GildedRose
     end
   end
 
+  def update_conjured_quality(item)
+    item.sell_in > 0 ? 2.times { reduce_quality(item) } : 4.times { reduce_quality(item) }
+  end
+
   def update_value(item)
     if is_normal?(item)
       update_normal_quality(item)
     elsif is_aged_brie?(item)
       update_aged_brie_quality(item)
-    elsif is_backstage_passes?(item)
+    elsif is_backstage_pass?(item)
       update_backstage_pass_quality(item)
+    elsif is_conjured?(item)
+      update_conjured_quality(item)
     end
   end
 
