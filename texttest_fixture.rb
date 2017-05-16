@@ -1,6 +1,5 @@
 require_relative './lib/gilded_rose.rb'
 
-
 puts "OMGHAI!"
 items = [
   Item.new(name="+5 Dexterity Vest", sell_in=10, quality=20),
@@ -13,7 +12,6 @@ items = [
   Item.new(name="Backstage passes to a TAFKAL80ETC concert", sell_in=5, quality=49),
 ]
 
-days = 100
 if ARGV.size > 0
   days = ARGV[0].to_i + 1
 end
