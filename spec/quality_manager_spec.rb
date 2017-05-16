@@ -101,7 +101,4 @@ describe Quality_Manager do
     end
   end
 
-
-
-
 end
