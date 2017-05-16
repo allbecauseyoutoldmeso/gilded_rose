@@ -2,7 +2,7 @@ require 'gilded_rose'
 
 describe GildedRose do
 
-  subject(:gilded_rose) { described_class.new([Item.new('Malbec', 5, 10), Item.new('Aged Brie', 5, 10), Item.new('Sulfuras', 0, 80), Item.new('Backstage passes', 10, 10), Item.new('Conjured', 5, 10)])}
+  subject(:gilded_rose) { described_class.new([Item.new('Malbec', 5, 10), Item.new('Aged Brie', 5, 10), Item.new('Sulfuras, Hand of Ragnaros', 0, 80), Item.new('Backstage passes to a TAFKAL80ETC concert', 10, 10), Item.new('Conjured', 5, 10)])}
 
   describe "#update_quality" do
 
