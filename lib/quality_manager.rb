@@ -1,29 +1,13 @@
+require_relative 'item_category_helper'
+
 class Quality_Manager
+
+  include Item_Category_Helper
 
   attr_reader :items
 
   def initialize(items)
     @items = items
-  end
-
-  def is_normal?(item)
-    ! ['Aged Brie', 'Backstage passes', 'Sulfuras', 'Conjured'].include?(item.name)
-  end
-
-  def is_aged_brie?(item)
-    item.name == 'Aged Brie'
-  end
-
-  def is_backstage_pass?(item)
-    item.name == 'Backstage passes'
-  end
-
-  def is_sulfuras?(item)
-    item.name == 'Sulfuras'
-  end
-
-  def is_conjured?(item)
-    item.name == 'Conjured'
   end
 
   def reduce_quality(item)
@@ -62,7 +46,7 @@ class Quality_Manager
     item.sell_in > 0 ? 2.times { reduce_quality(item) } : 4.times { reduce_quality(item) }
   end
 
-  def update
+  def update_items
     items.each do |item|
       if is_normal?(item)
         update_normal_quality(item)
