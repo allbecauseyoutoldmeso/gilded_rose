@@ -77,7 +77,19 @@ describe Quality_Manager do
       quality_manager.update_backstage_pass_quality(pass)
       expect(pass.quality).to eq 0
     end
+  end
 
+  describe '#update_conjured_quality' do
+    it 'reduces the quality by 2 if sell_in > 0' do
+      conjured = Item.new('Conjured rabbit', 5, 5)
+      quality_manager.update_conjured_quality(conjured)
+      expect(conjured.quality).to eq 3
+    end
+    it 'reduces the quality by 4 if sell_in <= 0' do
+      conjured = Item.new('Conjured rabbit', 0, 5)
+      quality_manager.update_conjured_quality(conjured)
+      expect(conjured.quality).to eq 1
+    end
   end
 
   describe '#update_items' do
