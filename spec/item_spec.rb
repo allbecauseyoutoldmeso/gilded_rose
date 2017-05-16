@@ -12,8 +12,18 @@ describe Item do
     expect(malbec.sell_in).to eq 10
   end
 
+  it 'sell_in value can be changed' do
+    malbec.sell_in += 1
+    expect(malbec.sell_in).to eq 11
+  end
+
   it 'has a quality value' do
     expect(malbec.quality).to eq 5
+  end
+
+  it 'quality value can be changed' do
+    malbec.quality += 1
+    expect(malbec.quality).to eq 6
   end
 
   it 'has a #to_s method which returns a descriptive string' do
