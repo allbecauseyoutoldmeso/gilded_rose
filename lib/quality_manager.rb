@@ -11,15 +11,11 @@ class Quality_Manager
   end
 
   def reduce_quality(item)
-    if item.quality > 0
-      item.quality -= 1
-    end
+    item.quality -= 1 if item.quality > 0
   end
 
   def increase_quality(item)
-    if item.quality < 50
-      item.quality += 1
-    end
+    item.quality += 1 if item.quality < 50
   end
 
   def update_normal_quality(item)
