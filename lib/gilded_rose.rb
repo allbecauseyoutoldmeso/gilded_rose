@@ -1,4 +1,5 @@
 require_relative 'item'
+require_relative 'value_manager'
 
 class GildedRose
 
@@ -64,29 +65,31 @@ class GildedRose
     item.sell_in > 0 ? 2.times { reduce_quality(item) } : 4.times { reduce_quality(item) }
   end
 
-  def update_quality(item)
-    if is_normal?(item)
-      update_normal_quality(item)
-    elsif is_aged_brie?(item)
-      update_aged_brie_quality(item)
-    elsif is_backstage_pass?(item)
-      update_backstage_pass_quality(item)
-    elsif is_conjured?(item)
-      update_conjured_quality(item)
+  def update_quality(items)
+    @items.each do |item|
+      if is_normal?(item)
+        update_normal_quality(item)
+      elsif is_aged_brie?(item)
+        update_aged_brie_quality(item)
+      elsif is_backstage_pass?(item)
+        update_backstage_pass_quality(item)
+      elsif is_conjured?(item)
+        update_conjured_quality(item)
+      end
     end
   end
 
-  def update_sell_in(item)
-    if ! is_sulfuras?(item)
-      item.sell_in -= 1
+  def update_sell_in(items)
+    @items.each do |item|
+      if ! is_sulfuras?(item)
+        item.sell_in -= 1
+      end
     end
   end
 
   def update_item()
-    @items.each do |item|
-      update_quality(item)
-      update_sell_in(item)
-    end
+    update_quality(@items)
+    update_sell_in(@items)
   end
 
 end
