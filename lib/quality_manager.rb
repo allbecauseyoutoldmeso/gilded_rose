@@ -28,7 +28,7 @@ class Quality_Manager
 
   def update_backstage_pass_quality(item)
     if item.sell_in <= 0
-      item.quality.times { reduce_quality(item) }
+      item.quality = 0
     elsif item.sell_in <=5
       3.times { increase_quality(item) }
     elsif item.sell_in <= 10
