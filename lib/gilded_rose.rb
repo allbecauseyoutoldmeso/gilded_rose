@@ -1,5 +1,6 @@
 require_relative 'item'
 require_relative 'quality_manager'
+require_relative 'sell_in_manager'
 
 class GildedRose
 
@@ -35,11 +36,13 @@ class GildedRose
   end
 
   def update_sell_in()
-    items.each do |item|
-      if ! is_sulfuras?(item)
-        item.sell_in -= 1
-      end
-    end
+    sell_in_manager = Sell_In_Manager.new(items)
+    sell_in_manager.update_items
+    # items.each do |item|
+    #   if ! is_sulfuras?(item)
+    #     item.sell_in -= 1
+    #   end
+    # end
   end
 
   def update_items()
