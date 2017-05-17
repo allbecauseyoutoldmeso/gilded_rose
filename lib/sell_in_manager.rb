@@ -12,9 +12,13 @@ class Sell_In_Manager
 
   def update_items
     items.each do |item|
-      if ! is_sulfuras?(item)
-        item.sell_in -= 1
-      end
+      reduce_sell_in(item)
+    end
+  end
+
+  def reduce_sell_in(item)
+    if ! is_sulfuras?(item)
+      item.sell_in -= 1
     end
   end
 

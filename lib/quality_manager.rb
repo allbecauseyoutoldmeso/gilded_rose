@@ -10,20 +10,21 @@ class Quality_Manager
     @items = items
   end
 
-  def reduce_quality(item)
-    item.quality -= 1 if item.quality > 0
-  end
-
-  def increase_quality(item)
-    item.quality += 1 if item.quality < 50
+  def update_items
+    items.each do |item|
+      update_normal_quality(item) if is_normal?(item)
+      update_aged_brie_quality(item) if is_aged_brie?(item)
+      update_backstage_pass_quality(item) if is_backstage_pass?(item)
+      update_conjured_quality(item) if is_conjured?(item)
+    end
   end
 
   def update_normal_quality(item)
-    item.sell_in > 0 ? reduce_quality(item) : 2.times { reduce_quality(item) }
+    expires?(item, 0) ? 2.times { reduce_quality(item) } : reduce_quality(item)
   end
 
   def update_aged_brie_quality(item)
-    item.sell_in > 0 ? increase_quality(item) : 2.times { increase_quality(item) }
+    expires?(item, 0) ? 2.times { increase_quality(item) } : increase_quality(item)
   end
 
   def update_backstage_pass_quality(item)
@@ -39,16 +40,15 @@ class Quality_Manager
   end
 
   def update_conjured_quality(item)
-    item.sell_in > 0 ? 2.times { reduce_quality(item) } : 4.times { reduce_quality(item) }
+    expires?(item, 0) ? 4.times { reduce_quality(item) } : 2.times { reduce_quality(item) }
   end
 
-  def update_items
-    items.each do |item|
-      update_normal_quality(item) if is_normal?(item)
-      update_aged_brie_quality(item) if is_aged_brie?(item)
-      update_backstage_pass_quality(item) if is_backstage_pass?(item)
-      update_conjured_quality(item) if is_conjured?(item)
-    end
+  def reduce_quality(item)
+    item.quality -= 1 if item.quality > 0
+  end
+
+  def increase_quality(item)
+    item.quality += 1 if item.quality < 50
   end
 
   def expires?(item, days)
