@@ -27,13 +27,13 @@ class Quality_Manager
   end
 
   def update_backstage_pass_quality(item)
-    if item.sell_in <= 0
+    if expires?(item, 0)
       item.quality = 0
-    elsif item.sell_in <=5
+    elsif expires?(item, 5)
       3.times { increase_quality(item) }
-    elsif item.sell_in <= 10
+    elsif expires?(item, 10)
       2.times { increase_quality(item) }
-    elsif
+    else
       increase_quality(item)
     end
   end
@@ -49,6 +49,10 @@ class Quality_Manager
       update_backstage_pass_quality(item) if is_backstage_pass?(item)
       update_conjured_quality(item) if is_conjured?(item)
     end
+  end
+
+  def expires?(item, days)
+    item.sell_in <= days
   end
 
 end

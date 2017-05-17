@@ -27,7 +27,7 @@ describe Item do
   end
 
   it 'has a #to_s method which returns a descriptive string' do
-    expect(malbec.to_s).to eq 'Malbec, 10, 5'
+    expect { puts malbec }.to output("Malbec, 10, 5\n").to_stdout
   end
 
 end
