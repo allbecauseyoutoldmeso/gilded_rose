@@ -1,4 +1,4 @@
-* Makers Academy week 9 (tech test week).
+* Makers Academy week 10 (tech test week).
 
 * My solution to the Gilded Rose Refactoring Kata, originally created by Terry Hughes and translated into Ruby by Emily Bache (https://github.com/emilybache/GildedRose-Refactoring-Kata).   
 
