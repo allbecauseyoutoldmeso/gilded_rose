@@ -6,4 +6,4 @@
 
 * I created a full set of RSpec tests before I started refactoring, in order to check that my refactored code still did the job.  
 
-* I then borrowed and adapted the Golden Master Spec from Artur Trzop ( http://blog.lunarlogic.io/2015/what-ive-learned-by-doing-the-gilded-rose-kata-4-refactoring-tips/).  This runs the code for a hundred prospective days, in order to check for edge cases.  
+* I then borrowed and adapted the Golden Master Spec from Artur Trzop ( http://blog.lunarlogic.io/2015/what-ive-learned-by-doing-the-gilded-rose-kata-4-refactoring-tips/).  This compares the outcomes if items are updated one hundred times, in order to check for edge cases.  
